@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,11 +17,15 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo_produto")
 	private Long codigo;
+	
 	private String descricao;
-	private Long quantidade;
-	private Double preco;
-	@Column(name = "codigo_fabricante")
+	private int quantidade;
+	@Column(length = 12, precision = 2)
+	private Double preco;	
+	@ManyToOne
+	@JoinColumn(name = "codigo_fabricante")
 	private Fabricante fabricante;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -32,12 +38,7 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Long getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(Long quantidade) {
-		this.quantidade = quantidade;
-	}
+	
 	public Double getPreco() {
 		return preco;
 	}
@@ -49,6 +50,12 @@ public class Produto {
 	}
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 	
 	

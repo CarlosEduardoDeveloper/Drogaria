@@ -2,42 +2,48 @@ package br.com.drogaria.dao;
 
 import javax.persistence.EntityManager;
 
-import br.com.drogaria.domain.Fabricante;
+import br.com.drogaria.domain.Produto;
 import br.com.drogaria.util.JPAUtil;
 
-public class FabricanteDao {
+public class ProdutoDao {
 
 	private EntityManager em;
 
-//	public FabricanteDAO(EntityManager em) {
+//	public ProdutoDao (EntityManager em) {
 //		this.em = em;
 //	}
 
-	public void cadastrar(Fabricante fabricante) {
+	public void cadastrar(Produto produto) {
 		try {
-			em = JPAUtil.getEntityManager(); ///sempre colocar nos métodos...
+			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-			this.em.persist(fabricante);
+			this.em.persist(produto);
 			em.getTransaction().commit();
-			System.out.println("Fabricante cadastrado.");
 		} catch (Exception e) {
 			em.getTransaction().rollback();
-			System.out.println("Não foi possível cadastrar o fabricante.");
 		} finally {
 			em.close();
 		}
 	}
-
-	public Fabricante buscarPorId(int id) {
-		em = JPAUtil.getEntityManager(); ///sempre colocar nos métodos...
-		return em.find(Fabricante.class, id);
-	}
 	
-	public void remover(Fabricante fabricante) {
+	public Produto buscarPorId(int id){
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-			this.em.remove(fabricante);
+			return em.find(Produto.class, id);
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		} finally {
+			em.close();		
+		}
+		return null;
+	}
+	
+	public void remover(Produto produto, int id) {
+		try {
+			em = JPAUtil.getEntityManager();
+			em.getTransaction().begin();
+			this.em.remove(em.find(Produto.class, id));
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
@@ -46,11 +52,11 @@ public class FabricanteDao {
 		}
 	}
 	
-	public void atualizar(Fabricante fabricante) {
+	public void atualizar(Produto produto) {
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-			this.em.merge(fabricante);
+			this.em.merge(produto);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
@@ -58,5 +64,4 @@ public class FabricanteDao {
 			em.close();		
 		}
 		}
-
 }

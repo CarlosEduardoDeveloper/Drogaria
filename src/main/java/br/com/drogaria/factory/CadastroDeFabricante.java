@@ -1,0 +1,23 @@
+package br.com.drogaria.factory;
+
+import br.com.drogaria.dao.FabricanteDao;
+import br.com.drogaria.domain.Fabricante;
+
+public class CadastroDeFabricante {
+	
+	public static void main(String[] args) {
+		FabricanteDao dao = new FabricanteDao();
+		
+		Fabricante Xiaomi = new Fabricante();
+		Xiaomi.setDescricao("Xiaomiiii");
+				
+		dao.cadastrar(Xiaomi);
+		
+		Fabricante Samsung = new Fabricante();
+		Samsung.setDescricao("Samsuuung");
+				
+		dao.cadastrar(Samsung);
+		 
+		    }
+
+	}
