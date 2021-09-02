@@ -15,7 +15,7 @@ public class CadastroDeProduto {
 		ProdutoDao dao = new ProdutoDao();
 		FabricanteDao f = new FabricanteDao();
 //		
-//		Produto celular = new Produto();
+		Produto celular = new Produto();
 //		celular.setFabricante(f.buscarPorId(1));
 //		celular.setDescricao("Muito legal");
 //		celular.setPreco(100.00D);
@@ -32,7 +32,7 @@ public class CadastroDeProduto {
 //		dao.cadastrar(celular2);
 		
 //		celular.getFabricante();
-		dao.remover(null, 1);
+		dao.remover(1l);
 		
 	}
 }

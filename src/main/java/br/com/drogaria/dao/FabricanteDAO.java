@@ -3,6 +3,7 @@ package br.com.drogaria.dao;
 import javax.persistence.EntityManager;
 
 import br.com.drogaria.domain.Fabricante;
+import br.com.drogaria.domain.Produto;
 import br.com.drogaria.util.JPAUtil;
 
 public class FabricanteDao {
@@ -23,24 +24,35 @@ public class FabricanteDao {
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Não foi possível cadastrar o fabricante.");
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
 	}
 
-	public Fabricante buscarPorId(int id) {
-		em = JPAUtil.getEntityManager(); ///sempre colocar nos métodos...
-		return em.find(Fabricante.class, id);
-	}
-	
-	public void remover(Fabricante fabricante) {
+	public Fabricante buscar(int id) {
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-			this.em.remove(fabricante);
+			return em.find(Fabricante.class, id);
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();		
+		}
+		return null;
+	}
+	
+	public void remover(int codigo) {
+		try {
+			em = JPAUtil.getEntityManager();
+			em.getTransaction().begin();
+			this.em.remove(em.find(Fabricante.class, codigo));
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			em.close();		
 		}
@@ -54,6 +66,7 @@ public class FabricanteDao {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			em.close();		
 		}

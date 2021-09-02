@@ -19,27 +19,31 @@ public class ProdutoDao {
 			em.getTransaction().begin();
 			this.em.persist(produto);
 			em.getTransaction().commit();
+			System.out.println("Produto cadastrado.");
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			System.out.println("Não foi possível cadastrar o produto.");
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
 	}
 	
-	public Produto buscarPorId(int id){
+	public Produto buscar(int id){
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
 			return em.find(Produto.class, id);
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			em.close();		
 		}
 		return null;
 	}
 	
-	public void remover(Produto produto, int id) {
+	public void remover(Long id) {
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
@@ -47,6 +51,7 @@ public class ProdutoDao {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			em.close();		
 		}
@@ -60,6 +65,7 @@ public class ProdutoDao {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			em.close();		
 		}

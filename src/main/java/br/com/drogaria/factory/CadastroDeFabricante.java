@@ -9,15 +9,24 @@ public class CadastroDeFabricante {
 		FabricanteDao dao = new FabricanteDao();
 		
 		Fabricante Xiaomi = new Fabricante();
-		Xiaomi.setDescricao("Xiaomiiii");
-				
-		dao.cadastrar(Xiaomi);
+//		Xiaomi.setDescricao("Xiaomiiii");
+//				
+//		dao.cadastrar(Xiaomi);
+//		
+//		Fabricante Samsung = new Fabricante();
+//		Samsung.setDescricao("Samsuuung");
+//				
+//		dao.cadastrar(Samsung);
 		
-		Fabricante Samsung = new Fabricante();
-		Samsung.setDescricao("Samsuuung");
-				
-		dao.cadastrar(Samsung);
-		 
+//		dao.remover(1);
+		
+//		dao.atualizar("Xiaomi20");
+
+	
+		Fabricante f2 = dao.buscar(3);
+		f2.setDescricao("Samsung2");
+		dao.atualizar(f2);
+		
 		    }
 
 	}
