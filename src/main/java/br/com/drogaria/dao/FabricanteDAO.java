@@ -1,5 +1,7 @@
 package br.com.drogaria.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.drogaria.domain.Fabricante;
@@ -71,5 +73,46 @@ public class FabricanteDao {
 			em.close();		
 		}
 		}
+	
+	public List<Fabricante> listar(){
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+        String queryList = "SELECT f FROM Fabricante f ORDER BY descricao ASC";
+        List<Fabricante> fabricanteList = em
+                .createQuery(queryList, Fabricante.class)
+                .getResultList();
+
+        return fabricanteList;
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Erro ao listar");
+        } finally {
+            em.close();
+        }
+
+        return null;
+    }
+
+    public List<Fabricante> buscarPorDesc(String desc){
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+        String queryList = "SELECT f FROM Fabricante f WHERE f.descricao LIKE :descricao";
+        List<Fabricante> fabricanteList = em
+                .createQuery(queryList, Fabricante.class)
+                .setParameter("descricao", "%" + desc + "%")
+                .getResultList();
+
+        return fabricanteList;
+
+        } catch(Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Erro na pesquisa");
+        } finally {
+            em.close();
+        }
+        return null;
+    }
 
 }
