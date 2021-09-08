@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.com.drogaria.domain.Fabricante;
-import br.com.drogaria.domain.Produto;
 import br.com.drogaria.util.JPAUtil;
 
 public class FabricanteDao {
@@ -16,7 +15,7 @@ public class FabricanteDao {
 //		this.em = em;
 //	}
 
-	public void cadastrar(Fabricante fabricante) {
+	public void cadastrar(Fabricante fabricante) throws Exception {
 		try {
 			em = JPAUtil.getEntityManager(); ///sempre colocar nos métodos...
 			em.getTransaction().begin();
