@@ -1,12 +1,12 @@
 package br.com.drogaria.factory;
 
-import br.com.drogaria.dao.FabricanteDao;
+import br.com.drogaria.dao.FabricanteDAO;
 import br.com.drogaria.domain.Fabricante;
 
 public class CadastroDeFabricante {
 	
 	public static void main(String[] args) {
-		FabricanteDao dao = new FabricanteDao();
+		FabricanteDAO dao = new FabricanteDAO();
 		
 		Fabricante Xiaomi = new Fabricante();
 //		Xiaomi.setDescricao("Xiaomiiii");

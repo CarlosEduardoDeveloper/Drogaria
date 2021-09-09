@@ -2,8 +2,8 @@ package br.com.drogaria.factory;
 
 import javax.persistence.EntityManager;
 
-import br.com.drogaria.dao.FabricanteDao;
-import br.com.drogaria.dao.ProdutoDao;
+import br.com.drogaria.dao.FabricanteDAO;
+import br.com.drogaria.dao.ProdutoDAO;
 import br.com.drogaria.domain.Produto;
 import br.com.drogaria.util.JPAUtil;
 
@@ -12,8 +12,8 @@ public class CadastroDeProduto {
 	public static void main(String[] args) {
 
 //		EntityManager em = JPAUtil.getEntityManager();
-		ProdutoDao dao = new ProdutoDao();
-		FabricanteDao f = new FabricanteDao();
+		ProdutoDAO dao = new ProdutoDAO();
+		FabricanteDAO f = new FabricanteDAO();
 //		
 		Produto celular = new Produto();
 //		celular.setFabricante(f.buscarPorId(1));

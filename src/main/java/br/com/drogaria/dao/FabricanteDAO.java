@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import br.com.drogaria.domain.Fabricante;
 import br.com.drogaria.util.JPAUtil;
 
-public class FabricanteDao {
+public class FabricanteDAO {
 
 	private EntityManager em;
 

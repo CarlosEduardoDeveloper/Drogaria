@@ -5,11 +5,11 @@ import javax.persistence.EntityManager;
 import br.com.drogaria.domain.Produto;
 import br.com.drogaria.util.JPAUtil;
 
-public class ProdutoDao {
+public class ProdutoDAO {
 
 	private EntityManager em;
 
-//	public ProdutoDao (EntityManager em) {
+//	public ProdutoDAO (EntityManager em) {
 //		this.em = em;
 //	}
 
