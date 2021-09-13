@@ -2,10 +2,11 @@ package br.com.drogaria.factory;
 
 import br.com.drogaria.dao.FabricanteDAO;
 import br.com.drogaria.domain.Fabricante;
+import br.com.drogaria.exception.DaoException;
 
 public class CadastroDeFabricante {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DaoException {
 		FabricanteDAO dao = new FabricanteDAO();
 		
 		Fabricante Xiaomi = new Fabricante();
