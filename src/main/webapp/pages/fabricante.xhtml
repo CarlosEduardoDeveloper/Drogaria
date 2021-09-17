@@ -67,11 +67,18 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="Gravar" 
+<<<<<<< HEAD
 							actionListener="#{MBFabricante.novo}"
 							oncomplete="PF('dlgFabNovo').hide(); "
 							update=":frmFabListagem:tblFabricantes :msgGlobal"/>
 					<p:commandButton value="Cancelar"
 					    onclick="PF('dlgFabNovo').hide();" />
+=======
+									 actionListener="#{MBFabricante.novo}"
+									 oncomplete="PF('dlgFabNovo').hide(); tabelaFabricante.clearFilters();"
+									 update=":frmFabListagem:tblFabricantes :msgGlobal"/>
+					<p:commandButton value="Cancelar" onclick="PF('dlgFabNovo').hide();" />
+>>>>>>> 787d206519c66428937348d2e9017bbe022dff0f
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
