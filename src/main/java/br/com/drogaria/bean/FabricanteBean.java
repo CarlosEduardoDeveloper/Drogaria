@@ -9,24 +9,25 @@ import javax.faces.bean.ViewScoped;
 import br.com.drogaria.dao.FabricanteDAO;
 import br.com.drogaria.domain.Fabricante;
 import br.com.drogaria.exception.DaoException;
+import br.com.drogaria.util.JPAUtil;
 import br.com.drogaria.util.JSFUtil;
 
 @ManagedBean(name = "MBFabricante")
 @ViewScoped
 public class FabricanteBean {
-	
+
 	private Fabricante fabricante;
 	private ArrayList<Fabricante> fabricantes;
 	private ArrayList<Fabricante> fabricantesFiltrados;
-	
+
 	public Fabricante getFabricante() {
 		return fabricante;
 	}
-	
+
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-		
+
 	public ArrayList<Fabricante> getFabricantes() {
 		return fabricantes;
 	}
@@ -46,66 +47,63 @@ public class FabricanteBean {
 	@PostConstruct
 	public void prepararPesquisa() {
 		try {
-		FabricanteDAO dao = new FabricanteDAO();
-		fabricantes = (ArrayList<Fabricante>) dao.listar();
-	} catch (Exception ex) {
-		ex.printStackTrace();
-		JSFUtil.adicionarMensagemErro(ex.getMessage());
+			
+			FabricanteDAO dao = new FabricanteDAO();
+			fabricantes = (ArrayList<Fabricante>) dao.listar();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
 	}
-	}
-	
+
 	public void prepararNovo() {
 		fabricante = new Fabricante();
 	}
-	
+
 	public void novo() {
-        try {
-            FabricanteDAO dao = new FabricanteDAO();
-            dao.cadastrar(fabricante);
+		try {
+			FabricanteDAO dao = new FabricanteDAO();
+			dao.cadastrar(fabricante);
 
-            fabricantes = (ArrayList<Fabricante>) dao.listar();
+			fabricantes = (ArrayList<Fabricante>) dao.listar();
 
-            JSFUtil.adicionarMensagemSucesso("Fabricante Salvo Com Sucesso!");
+			JSFUtil.adicionarMensagemSucesso("Fabricante Salvo Com Sucesso!");
 
-        } catch (DaoException e) {
-            e.printStackTrace();
-            JSFUtil.adicionarMensagemErro(e.getMessage());
+		} catch (DaoException e) {
+			e.printStackTrace();
+			JSFUtil.adicionarMensagemErro(e.getMessage());
 
-        }
+		}
 
-    }
-	
+	}
 
-	
 	public void excluir() {
 		try {
 			FabricanteDAO dao = new FabricanteDAO();
 			dao.remover(fabricante.getCodigo());
-			
-			fabricantes = (ArrayList<Fabricante>) dao.listar();
-				
+
+			fabricantes = dao.listar();
+
 			JSFUtil.adicionarMensagemSucesso("Fabricante removido com sucesso!");
 		} catch (Exception ex) {
-				ex.printStackTrace();
-				JSFUtil.adicionarMensagemErro(ex.getMessage());	
-			}
-				
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
 		}
-	
-	
+
+	}
+
 	public void editar() {
 		try {
 			FabricanteDAO dao = new FabricanteDAO();
 			dao.atualizar(fabricante);
-			
+
 			fabricantes = (ArrayList<Fabricante>) dao.listar();
-			 
+
 			JSFUtil.adicionarMensagemSucesso("Fabricante editado com sucesso!");
 		} catch (Exception ex) {
-				ex.printStackTrace();
-				JSFUtil.adicionarMensagemErro(ex.getMessage());	
-			}
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
 	}
-	
-	}
-	
+
+}

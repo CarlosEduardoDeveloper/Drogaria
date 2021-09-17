@@ -2,6 +2,7 @@ package br.com.drogaria.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,20 +17,20 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo_produto")
-	private Long codigo;
+	private int codigo;
 	
 	private String descricao;
 	private int quantidade;
 	@Column(length = 12, precision = 2)
 	private Double preco;	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_fabricante")
-	private Fabricante fabricante;
+	private Fabricante fabricante = new Fabricante();
 	
-	public Long getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Long codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getDescricao() {

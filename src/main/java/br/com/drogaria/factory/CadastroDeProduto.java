@@ -32,7 +32,7 @@ public class CadastroDeProduto {
 //		dao.cadastrar(celular2);
 		
 //		celular.getFabricante();
-		dao.remover(1l);
+//		dao.remover(1l);
 		
 	}
 }

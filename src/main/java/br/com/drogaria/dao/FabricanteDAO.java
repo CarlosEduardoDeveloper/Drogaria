@@ -1,5 +1,6 @@
 package br.com.drogaria.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ public class FabricanteDAO {
 
 	public void cadastrar(Fabricante fabricante) throws DaoException {
         try {
-
+        	
             em = JPAUtil.getEntityManager();
             em.getTransaction().begin();
 
@@ -51,7 +52,8 @@ public class FabricanteDAO {
 	
 	public Fabricante buscar(int id) {
         if (em == null || !em.isOpen()) {
-            em = JPAUtil.getEntityManager(); /// sempre colocar nos métodos...
+            em = JPAUtil.getEntityManager();
+            em.getTransaction().begin(); /// sempre colocar nos métodos...
         }
         return em.find(Fabricante.class, id);
     }
@@ -87,29 +89,32 @@ public class FabricanteDAO {
 		}
 		}
 	
-	public List<Fabricante> listar() throws DaoException{
+	public ArrayList<Fabricante> listar() throws DaoException{
         EntityManager em = JPAUtil.getEntityManager();
-
+        em.getTransaction().begin();
+        em.getTransaction().commit();
         try {
         String queryList = "SELECT f FROM Fabricante f ORDER BY descricao ASC";
         List<Fabricante> fabricanteList = em
                 .createQuery(queryList, Fabricante.class)
                 .getResultList();
 
-        return fabricanteList;
+        return (ArrayList<Fabricante>) fabricanteList;
         } catch(Exception ex) {
+        	em.getTransaction().rollback();
             ex.printStackTrace();
             System.out.println("Erro ao listar");
+            throw new DaoException("Erro 301");
         } finally {
             em.close();
         }
 
-        return null;
     }
 
-    public List<Fabricante> buscarPorDesc(String desc) throws DaoException{
+    public ArrayList<Fabricante> buscarPorDesc(String desc) throws DaoException{
         EntityManager em = JPAUtil.getEntityManager();
-
+        em.getTransaction().begin();
+        em.getTransaction().commit();
         try {
         String queryList = "SELECT f FROM Fabricante f WHERE f.descricao LIKE :descricao";
         List<Fabricante> fabricanteList = em
@@ -117,15 +122,17 @@ public class FabricanteDAO {
                 .setParameter("descricao", "%" + desc + "%")
                 .getResultList();
 
-        return fabricanteList;
+        return (ArrayList<Fabricante>) fabricanteList;
 
         } catch(Exception ex) {
+        	em.getTransaction().rollback();
             ex.printStackTrace();
             System.out.println("Erro na pesquisa");
+            throw new DaoException("Erro 301");
         } finally {
             em.close();
         }
-        return null;
+       
     }
 
 //	public void remover(Fabricante fabricante) throws DaoException {
