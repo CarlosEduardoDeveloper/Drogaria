@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import br.com.drogaria.dao.FabricanteDAO;
 import br.com.drogaria.domain.Fabricante;
 import br.com.drogaria.exception.DaoException;
-import br.com.drogaria.util.JPAUtil;
 import br.com.drogaria.util.JSFUtil;
 
 @ManagedBean(name = "MBFabricante")

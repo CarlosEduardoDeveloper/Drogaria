@@ -79,13 +79,54 @@ public class ProdutoBean {
 		}
 		}
 	
-//	public void novo() {
-//		ProdutoDAO dao = new ProdutoDAO();
-//		dao.salvar(produto);
-//		
-//		produtos = dao.listar();
-//		
-//		JSFUtil.adicionarMensagemErro(null);
-//	}
+	public void novo() {
+		try {
+			ProdutoDAO dao = new ProdutoDAO();
+			dao.cadastrar(produto);
+			produtos = dao.listar();
+			JSFUtil.adicionarMensagemSucesso("Produto salvo com sucesso");
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
+		
+	}
 	
+	public void excluir() {
+		try {
+			ProdutoDAO dao = new ProdutoDAO();
+			dao.remover(produto.getCodigo());
+			produtos = dao.listar();
+			JSFUtil.adicionarMensagemSucesso("Produto removido com sucesso.");
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
+	}
+	
+	public void prepararEditar() {
+		try {
+			FabricanteDAO dao = new FabricanteDAO();
+			comboFabricantes = dao.listar();
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
+		
+	}
+	
+	public void editar() {
+		try {
+			ProdutoDAO dao = new ProdutoDAO();
+			
+			dao.atualizar(produto);
+			
+			produtos=dao.listar();
+			JSFUtil.adicionarMensagemErro("Produto editado com sucesso");
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			JSFUtil.adicionarMensagemErro(ex.getMessage());
+		}
+	}
 }
