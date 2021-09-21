@@ -123,7 +123,7 @@ public class ProdutoBean {
 			dao.atualizar(produto);
 			
 			produtos=dao.listar();
-			JSFUtil.adicionarMensagemErro("Produto editado com sucesso");
+			JSFUtil.adicionarMensagemSucesso("Produto editado com sucesso");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			JSFUtil.adicionarMensagemErro(ex.getMessage());
