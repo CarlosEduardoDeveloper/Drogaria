@@ -34,7 +34,7 @@ public class ProdutoDAO {
 
 	public Produto buscar(int id) {
         if (em == null || !em.isOpen()) {
-            em = JPAUtil.getEntityManager(); /// sempre colocar nos métodos...
+            em = JPAUtil.getEntityManager();
         }
         return em.find(Produto.class, id);
     }
@@ -43,7 +43,7 @@ public class ProdutoDAO {
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-//			this.em.remove(em.find(Fabricante.class, codigo));
+
 			
 			Produto produtoBuscado = this.buscar(codigo);
 			this.em.remove(produtoBuscado);
