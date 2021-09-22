@@ -93,6 +93,12 @@
 			</plugin>
 
 			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
@@ -114,7 +120,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
+
 		</plugins>
 	</build>
 </project>
