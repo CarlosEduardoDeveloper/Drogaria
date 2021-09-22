@@ -13,10 +13,6 @@ public class FabricanteDAO {
 
 	private EntityManager em;
 
-//	public FabricanteDAO(EntityManager em) {
-//		this.em = em;
-//	}
-
 	public void cadastrar(Fabricante fabricante) throws DaoException {
         try {
         	
@@ -36,20 +32,6 @@ public class FabricanteDAO {
         }
     }
 
-//	public Fabricante buscar(int id) throws DaoException {
-//		try {
-//			em = JPAUtil.getEntityManager();
-//			em.getTransaction().begin();
-//			return em.find(Fabricante.class, id);
-//		} catch (Exception e) {
-//			em.getTransaction().rollback();
-//			e.printStackTrace();
-//		} finally {
-//			em.close();		
-//		}
-//		return null;
-//	}
-	
 	public Fabricante buscar(int id) {
         if (em == null || !em.isOpen()) {
             em = JPAUtil.getEntityManager();
@@ -133,15 +115,4 @@ public class FabricanteDAO {
         }
        
     }
-
-//	public void remover(Fabricante fabricante) throws DaoException {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-//	public void editar(Fabricante fabricante) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
 }
