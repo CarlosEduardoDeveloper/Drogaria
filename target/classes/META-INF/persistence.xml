@@ -10,14 +10,14 @@
 	
 	<properties>
 			<property name ="javax.persistence.jdbc.driver" value ="org.postgresql.Driver"/>
-			<property name ="javax.persistence.jdbc.url" value ="jdbc:postgresql://localhost/Drogaria"/>
-			<property name ="javax.persistence.jdbc.user" value ="postgres"/>
-			<property name ="javax.persistence.jdbc.password" value ="123456"/>
+			<property name ="javax.persistence.jdbc.url" value ="jdbc:postgresql://ec2-52-0-93-3.compute-1.amazonaws.com/dd3tcri3f4mbqp"/>
+			<property name ="javax.persistence.jdbc.user" value ="fanzqdznfvvdjl"/>
+			<property name ="javax.persistence.jdbc.password" value ="eef46a316f05f67a15f244d4fcd502e51ddeadd0d45aa51ba26a75a7806b618e"/>
 			
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="false" />
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             
 		</properties>
 </persistence-unit>
