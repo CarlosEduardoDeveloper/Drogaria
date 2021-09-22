@@ -53,7 +53,7 @@ public class FabricanteDAO {
 	public Fabricante buscar(int id) {
         if (em == null || !em.isOpen()) {
             em = JPAUtil.getEntityManager();
-            em.getTransaction().begin(); /// sempre colocar nos métodos...
+            em.getTransaction().begin();
         }
         return em.find(Fabricante.class, id);
     }
@@ -62,7 +62,6 @@ public class FabricanteDAO {
 		try {
 			em = JPAUtil.getEntityManager();
 			em.getTransaction().begin();
-//			this.em.remove(em.find(Fabricante.class, codigo));
 			
 			Fabricante fabricanteBuscado = this.buscar(codigo);
 			this.em.remove(fabricanteBuscado);
